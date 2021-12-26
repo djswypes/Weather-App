@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_typing_uninitialized_variables, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
 import 'package:w_clima/utilities/constants.dart';
@@ -8,7 +8,7 @@ import  'city_screen.dart';
 WeatherModel weather = WeatherModel();
 
 class LocationScreen extends StatefulWidget {
-   LocationScreen( this.locationWeather);
+    LocationScreen(this.locationWeather, {Key? key}) : super(key: key);
 
   final locationWeather;
 
@@ -21,7 +21,7 @@ class _LocationScreenState extends State<LocationScreen> {
   String? weatherIcon;
   String? weatherMessage;
   String? cityName;
-  String? city;3
+  String? city;
 
   @override
   void initState() {
