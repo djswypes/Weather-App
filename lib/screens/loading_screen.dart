@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:w_clima/services/weather.dart';
 import 'location_screen.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 
 
@@ -23,6 +24,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return  const Scaffold(
+      body: SpinKitDoubleBounce(
+        color: Colors.white,
+        size: 75.0,
+      ),
+    );
   }
 }
