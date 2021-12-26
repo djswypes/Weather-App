@@ -22,6 +22,7 @@ class _LocationScreenState extends State<LocationScreen> {
   String? weatherMessage;
   String? cityName;
   String? city;
+  String? preposition;
 
   @override
   void initState() {
@@ -35,14 +36,15 @@ class _LocationScreenState extends State<LocationScreen> {
         temperature = 0;
         weatherIcon = 'Error';
         weatherMessage = 'Unable to get weather data';
-        cityName = city;
-        cityName ??= '';
+        preposition = '';
+        cityName = '';
       } else {
         double temp = weatherData['main']['temp'];
         temperature = temp.toInt();
         var condition = weatherData['weather'][0]['id'];
         weatherIcon = weather.getWeatherIcon(condition);
         weatherMessage = weather.getMessage(temperature!);
+        preposition = 'in';
         cityName = weatherData['name'];
       }});
     }
@@ -81,7 +83,6 @@ class _LocationScreenState extends State<LocationScreen> {
                   TextButton(
                     onPressed: () async{
                       var typeName = await Navigator.push(context, MaterialPageRoute(builder: (context) => CityScreen()));
-                      print(typeName);
                       if (typeName != null) {
                         var weatherData = await weather.getCityWeather(typeName);
                         city = typeName;
@@ -115,7 +116,7 @@ class _LocationScreenState extends State<LocationScreen> {
               Padding(
                 padding: EdgeInsets.only(right: 15.0),
                 child: Text(
-                  "$weatherMessage in $cityName",
+                  "$weatherMessage $preposition $cityName",
                   textAlign: TextAlign.right,
                   style: kMessageTextStyle,
                 ),
